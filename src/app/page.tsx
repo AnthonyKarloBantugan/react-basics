@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 const POKEMONS = [
   { id: 1, name: "bulbasaur", type: ["grass", "poison"] },
@@ -34,37 +35,46 @@ export default function Home() {
   };
 
   return (
-    <main className={styles.main}>
-      <h1>POKEMON</h1>
-      <form className={styles.form}>
-        <div>
-          <input
-            type="search"
-            name="search"
-            placeholder="Search pokemon by name or type"
-            style={{ padding: "0.5rem", width: "100%" }}
-            onChange={(e) => filterPokemons(e.target.value)}
-          />
-        </div>
-      </form>
-      <table width="300px">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pokemons?.map(({ id, name, type }) => (
-            <tr key={id}>
-              <td style={{ textAlign: "center" }}>{id}</td>
-              <td style={{ textAlign: "center" }}>{name}</td>
-              <td style={{ textAlign: "center" }}>{type?.join(", ")}</td>
+    <>
+      {/* Navbar */}
+      <header>
+        <nav style={{ paddingInline: "100px", textAlign: "end" }}>
+          <Link href="/challenges">Challenges</Link>
+        </nav>
+      </header>
+
+      <main className={styles.main}>
+        <h1>POKEMON</h1>
+        <form className={styles.form}>
+          <div>
+            <input
+              type="search"
+              name="search"
+              placeholder="Search pokemon by name or type"
+              style={{ padding: "0.5rem", width: "100%" }}
+              onChange={(e) => filterPokemons(e.target.value)}
+            />
+          </div>
+        </form>
+        <table width="300px">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Type</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </main>
+          </thead>
+          <tbody>
+            {pokemons?.map(({ id, name, type }) => (
+              <tr key={id}>
+                <td style={{ textAlign: "center" }}>{id}</td>
+                <td style={{ textAlign: "center" }}>{name}</td>
+                <td style={{ textAlign: "center" }}>{type?.join(", ")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </main>
+    </>
   );
 }
