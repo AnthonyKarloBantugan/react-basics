@@ -62,7 +62,6 @@ const FormPage = () => {
       flexDir="column"
       justifyContent="center"
       alignItems="center"
-      bg="#EFEFEF"
     >
       <Center padding="1rem">
         <Card>
