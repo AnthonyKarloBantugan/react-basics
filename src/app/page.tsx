@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import styles from "./page.module.css";
-import Link from "next/link";
+import { Box, Flex, Input } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/next-js";
 
 const POKEMONS = [
   { id: 1, name: "bulbasaur", type: ["grass", "poison"] },
@@ -37,17 +38,28 @@ export default function Home() {
   return (
     <>
       {/* Navbar */}
-      <header>
-        <nav style={{ paddingInline: "100px", textAlign: "end" }}>
-          <Link href="/challenges">Challenges</Link>
-        </nav>
-      </header>
+      <Box as="header">
+        <Flex as="nav" padding="16px 100px" justifyContent="flex-end">
+          <Flex gap="1rem">
+            <Link href="/challenges">Challenges</Link>
+            <Link href="/todo">Todo</Link>
+          </Flex>
+        </Flex>
+      </Box>
 
-      <main className={styles.main}>
+      <Flex
+        as="main"
+        className={styles.main}
+        flexDir="column"
+        gap="1rem"
+        justifyContent="center"
+        alignItems="center"
+        minH="100vh"
+      >
         <h1>POKEMON</h1>
         <form className={styles.form}>
           <div>
-            <input
+            <Input
               type="search"
               name="search"
               placeholder="Search pokemon by name or type"
@@ -74,7 +86,7 @@ export default function Home() {
             ))}
           </tbody>
         </table>
-      </main>
+      </Flex>
     </>
   );
 }
